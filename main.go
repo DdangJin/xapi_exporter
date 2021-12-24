@@ -33,7 +33,7 @@ func main() {
 	prometheus.MustRegister(exporter)
 
 	// register the prometheus handler with http service
-	http.Handle(metricsPath, prometheus.Handler())
+	http.Handle(metricsPath, prometheus.promhttp.Handler())
 
 	// unless the metricsPath is /, offer a minimal page with a link at /
 	if len(metricsPath) > 0 && metricsPath != "/" {
